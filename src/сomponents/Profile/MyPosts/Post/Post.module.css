@@ -1,0 +1,10 @@
+.postItem {
+  margin-bottom: 10px;
+}
+
+.postItem img {
+  width: 40px;
+  height: 40px;
+  display: block;
+  border-radius: 50%;
+}
