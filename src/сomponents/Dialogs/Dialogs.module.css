@@ -1,8 +1,16 @@
-.header {
-  grid-area: h;
-  background-color: green;
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
 }
 
-.header img {
-  width: 20px;
+.dialogsItems {
+  padding: 10px;
+}
+
+.dialogsItems .active{
+  color: green;
+}
+
+.messegas {
+  padding: 10px;
 }
