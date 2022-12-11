@@ -13,7 +13,7 @@ const App = () => {
         <Navbar />
         <div className="content">
         <Routes>
-          <Route exact path='/dialogs' element={<Dialogs />} />
+          <Route path='/dialogs/*' element={<Dialogs />} />
           <Route exact path='/profile' element={<Profile />} />
         </Routes>
         </div>

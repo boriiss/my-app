@@ -1,24 +1,50 @@
 import classes from './Dialogs.module.css';
 import {NavLink} from "react-router-dom";
 
+const DialogsItems = (props) => {
+
+  let path = "/dialogs/" + props.id;
+
+  return (
+    <div className={classes.dialog}>
+      <NavLink to={path}>{props.name}</NavLink>
+    </div>
+  );
+}
+
+const Messegas = (props) => {
+  return (
+    <div className={classes.message}>{props.message}</div>
+  );
+}
+
 const Dialogs = () => {
+
+    let dialogsData = [
+      {id: 1, name: 'Dima'},
+      {id: 2, name: 'Sasha'},
+      {id: 3, name: 'Alexei'},
+      {id: 4, name: 'Olya'},
+      {id: 5, name: 'Ivan'},
+      {id: 6, name: 'Gosh'}
+    ]
+
+    let messegasData = [
+      {id: 1, message: 'Hello'},
+      {id: 2, message: 'Lorem'},
+      {id: 3, message: 'Lorem ipsum dolor sit amet'},
+      {id: 4, message: 'Lorem ipsum dolor sit amet consectetur'},
+      {id: 5, message: 'Lorem, ipsum'},
+      {id: 6, message: 'Lorem ipsum dolor sit'}
+    ]
+
     return (
       <div className={classes.dialogs}>
         <div className={classes.dialogsItems}>
-          <div className={classes.dialog + ' ' + classes.active}><NavLink to="/dialogs/1">Dima</NavLink></div>
-          <div className={classes.dialog}><NavLink to="/dialogs/2">Sasha</NavLink></div>
-          <div className={classes.dialog}><NavLink to="/dialogs/3">Alexei</NavLink></div>
-          <div className={classes.dialog}><NavLink to="/dialogs/4">Olya</NavLink></div>
-          <div className={classes.dialog}><NavLink to="/dialogs/5">Ivan</NavLink></div>
-          <div className={classes.dialog}><NavLink to="/dialogs/6">Gosh</NavLink></div>
+          <DialogsItems name={dialogsData[0].name} id={dialogsData[0].id} />
         </div>
         <div className={classes.messegas}>
-          <div className={classes.message}>Hello</div>
-          <div className={classes.message}>Lorem.</div>
-          <div className={classes.message}>Lorem ipsum dolor sit amet.</div>
-          <div className={classes.message}>Lorem ipsum dolor sit amet consectetur.</div>
-          <div className={classes.message}>Lorem, ipsum.</div>
-          <div className={classes.message}>Lorem ipsum dolor sit.</div>
+          <Messegas message={messegasData[0].message} id={messegasData[0].id} />
         </div>
       </div>
     );
