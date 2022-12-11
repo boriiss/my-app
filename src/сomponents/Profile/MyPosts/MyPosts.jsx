@@ -1,13 +1,9 @@
 import classes from './MyPosts.module.css';
 import Post from './Post/Post';
 
-const MyPosts = () => {
+const MyPosts = (props) => {
 
-  let postData = [
-    {id: 1, message: 'Hello', likesCounts: 54},
-    {id: 2, message: 'How are you?', likesCounts: 10},
-    {id: 3, message: 'It\'s my first post', likesCounts: 12}
-  ]
+  let postsElements = props.posts.map( p => <Post message={p.message} id={p.id} likesCounts={p.likesCounts} />);
 
     return (
         <div className={classes.posts}>
@@ -23,7 +19,7 @@ const MyPosts = () => {
             </form>
           </div>  
           <div>
-            <Post message={postData[0].message} id={postData[0].id} likesCounts={postData[0].likesCounts}/>
+            {postsElements}
           </div>
         </div>
     );
