@@ -1,0 +1,14 @@
+.friend {
+  margin-right: 10px;
+  color: #fff;
+}
+
+.friend span {
+  width: 30px;
+  height: 30px;
+  margin: 0 auto 5px auto;
+  background: yellow;
+  border-radius: 50%;
+  display: block;
+}
+
