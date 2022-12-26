@@ -10,9 +10,14 @@ const Dialogs = (props) => {
 
     let newMessegaElement = React.createRef();
 
-    let addMessega = () => {
+    let addMessage = () => {
       let text = newMessegaElement.current.value;
-      alert(text);
+      props.addMessage(text);
+    }
+
+    let onMessageChange = () => {
+      let text = newMessegaElement.current.value;
+      props.updateNewMessageText(text);
     }
 
     return (
@@ -22,8 +27,8 @@ const Dialogs = (props) => {
         </div>
         <div className={classes.messegas}>
           {messegasElements}
-          <textarea cols="100" rows="4" className={classes.messegasTextarea} ref={newMessegaElement}></textarea>
-          <button onClick={addMessega}>Send</button>
+          <textarea cols="100" rows="4" className={classes.messegasTextarea} ref={newMessegaElement} onChange={onMessageChange} value={props.state.newMessegasText} ></textarea>
+          <button onClick={addMessage}>Send</button>
         </div>
       </div>
     );

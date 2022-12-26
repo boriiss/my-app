@@ -24,12 +24,10 @@ const MyPosts = (props) => {
             My posts
           </h2>
           <div className={classes.newPost}>
-            <form action="">
               <div>
                 <textarea name="" id="" cols="30" rows="5" ref={newPostElement} onChange={onPostChange} value={props.newPostText}></textarea>
               </div>
               <button onClick={addPost}>Add post</button>
-            </form>
           </div>  
           <div>
             {postsElements}
