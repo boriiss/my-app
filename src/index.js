@@ -8,17 +8,21 @@ import {BrowserRouter} from "react-router-dom";
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
-let rerenderEntireTree = (store) => {
+let rerenderEntireTree = (state) => {
   
   root.render(
     <BrowserRouter>
-      <App state={store.state} store={store} />
+      <App state={store.state} 
+        addPost={store.addPost} 
+        addMessage={store.addMessage} 
+        updateNewPostText={store.updateNewPostText} 
+        updateNewMessageText={store.updateNewMessageText} />
     </BrowserRouter>
   );
 }
 
 
-rerenderEntireTree(store);
+rerenderEntireTree(store.state);
 
 store.subscribe(rerenderEntireTree);
 
