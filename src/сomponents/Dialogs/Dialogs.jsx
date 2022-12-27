@@ -1,4 +1,5 @@
 import React from 'react';
+import { addMessageActionCreaator, updateNewMessageActionCreaator } from '../../redux/state';
 import classes from './Dialogs.module.css';
 import DialogsItems from './DialogsItems/DialogsItems';
 import Messegas from './Messegas/Messegas';
@@ -11,12 +12,13 @@ const Dialogs = (props) => {
     let newMessegaElement = React.createRef();
 
     let addMessage = () => {
-      props.dispatch({ type: 'ADD-MESSEGA' });
+      let action = addMessageActionCreaator();
+      props.dispatch(action);
     }
 
     let onMessageChange = () => {
       let text = newMessegaElement.current.value;
-      let action = { type: 'UPDATE-NEW-MESSEGA-TEXT', newText: text };
+      let action = updateNewMessageActionCreaator(text);
       props.dispatch(action);
     }
 
