@@ -14,13 +14,11 @@ const App = (props) => {
         <Routes>
           <Route path='/dialogs/*' element={<Dialogs 
             state={props.state.messagePage}
-            addMessage={props.addMessage}
-            updateNewMessageText={props.updateNewMessageText}
+            dispatch={props.dispatch}
           />} />
           <Route exact path='/profile' element={<Profile 
             profilePage={props.state.profilePage} 
-            addPost={props.addPost}
-            updateNewPostText={props.updateNewPostText}
+            dispatch={props.dispatch}
           />} />
         </Routes>
         </div>

@@ -1,9 +1,13 @@
 let store = {
-    rerenderEntireTree () {
+    _callSubscriber () {
         console.log("State change");
     },
 
-    state : {
+    getState() {
+        return this._state;
+    },
+
+    _state : {
         profilePage: {
             posts : [
                 {id: 1, message: 'Hello', likesCounts: 54},
@@ -43,36 +47,63 @@ let store = {
     addPost () {
         let newPost = {
             id: 7,
-            message: store.state.profilePage.newPostText,
+            message: this._state.profilePage.newPostText,
             likesCounts: 0
         };
-        store.state.profilePage.posts.push(newPost);
-        store.state.profilePage.newPostText = '';
-        store.rerenderEntireTree(store);
+        this._state.profilePage.posts.push(newPost);
+        this._state.profilePage.newPostText = '';
+        this._callSubscriber(this._state);
     },
 
     addMessage () {
         let newMessage = {
             id: 7,
-            message: store.state.messagePage.newMessegasText
+            message: this._state.messagePage.newMessegasText
         };
-        store.state.messagePage.messegas.push(newMessage);
-        store.state.messagePage.newMessegasText = '';
-        store.rerenderEntireTree(store);
+        this._state.messagePage.messegas.push(newMessage);
+        this._state.messagePage.newMessegasText = '';
+        this._callSubscriber(this._state);
     },
 
     updateNewPostText (newText){
-        store.state.profilePage.newPostText = newText;
-        store.rerenderEntireTree(store);
+        this._state.profilePage.newPostText = newText;
+        this._callSubscriber(this._state);
     },
 
     updateNewMessageText (newText) {   
-        store.state.messagePage.newMessegasText = newText;
-        store.rerenderEntireTree(store);
+        this._state.messagePage.newMessegasText = newText;
+        this._callSubscriber(this._state);
     },
 
     subscribe (observer) {
-        store.rerenderEntireTree = observer;
+        this._callSubscriber = observer;
+    },
+
+    dispatch(action) {
+        if(action.type === 'ADD-POST') {
+            let newPost = {
+                id: 7,
+                message: this._state.profilePage.newPostText,
+                likesCounts: 0
+            };
+            this._state.profilePage.posts.push(newPost);
+            this._state.profilePage.newPostText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'ADD-MESSEGA') {
+            let newMessage = {
+                id: 7,
+                message: this._state.messagePage.newMessegasText
+            };
+            this._state.messagePage.messegas.push(newMessage);
+            this._state.messagePage.newMessegasText = '';
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state);
+        } else if (action.type === 'UPDATE-NEW-MESSEGA-TEXT') {
+            this._state.messagePage.newMessegasText = action.newText;
+            this._callSubscriber(this._state);
+        }
     }
 }
 

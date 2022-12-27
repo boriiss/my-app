@@ -12,17 +12,14 @@ let rerenderEntireTree = (state) => {
   
   root.render(
     <BrowserRouter>
-      <App state={store.state} 
-        addPost={store.addPost} 
-        addMessage={store.addMessage} 
-        updateNewPostText={store.updateNewPostText} 
-        updateNewMessageText={store.updateNewMessageText} />
+      <App state={state} 
+        dispatch={store.dispatch.bind(store)} />
     </BrowserRouter>
   );
 }
 
 
-rerenderEntireTree(store.state);
+rerenderEntireTree(store.getState());
 
 store.subscribe(rerenderEntireTree);
 

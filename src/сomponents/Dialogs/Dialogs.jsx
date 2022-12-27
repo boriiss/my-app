@@ -11,13 +11,13 @@ const Dialogs = (props) => {
     let newMessegaElement = React.createRef();
 
     let addMessage = () => {
-      let text = newMessegaElement.current.value;
-      props.addMessage(text);
+      props.dispatch({ type: 'ADD-MESSEGA' });
     }
 
     let onMessageChange = () => {
       let text = newMessegaElement.current.value;
-      props.updateNewMessageText(text);
+      let action = { type: 'UPDATE-NEW-MESSEGA-TEXT', newText: text };
+      props.dispatch(action);
     }
 
     return (
