@@ -113,13 +113,13 @@ let store = {
     }
 }
 
-export const addPostActionCreaator = () => ({type: ADD_POST})
+export const addPostActionCreator = () => ({type: ADD_POST})
   
-export const updateNewPostTextActionCreaator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 
-export const  addMessageActionCreaator = () =>  ({type: ADD_MESSEGA})
+export const  addMessageActionCreator = () =>  ({type: ADD_MESSEGA})
   
-export const updateNewMessageActionCreaator = (text) => ({type: UPDATE_NEW_MESSEGA_TEXT, newText: text})
+export const updateNewMessageActionCreator = (text) => ({type: UPDATE_NEW_MESSEGA_TEXT, newText: text})
 
 window.store = store;
 

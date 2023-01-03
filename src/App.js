@@ -13,8 +13,7 @@ const App = (props) => {
         <div className="content">
         <Routes>
           <Route path='/dialogs/*' element={<Dialogs 
-            state={props.state.messagePage}
-            dispatch={props.dispatch}
+            store={props.store}
           />} />
           <Route exact path='/profile' element={<Profile 
             profilePage={props.state.profilePage} 
