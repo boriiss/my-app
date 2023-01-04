@@ -1,8 +1,5 @@
-const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
-const ADD_MESSEGA = 'ADD-MESSEGA';
-const UPDATE_NEW_MESSEGA_TEXT = 'UPDATE-NEW-MESSEGA-TEXT';
-
+import profileReducer from './profile-reducer';
+import dialogsReducer from './dialogs-reducer';
 
 let store = {
     _callSubscriber () {
@@ -86,40 +83,12 @@ let store = {
     },
 
     dispatch(action) {
-        if(action.type === 'ADD-POST') {
-            let newPost = {
-                id: 7,
-                message: this._state.profilePage.newPostText,
-                likesCounts: 0
-            };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'ADD-MESSEGA') {
-            let newMessage = {
-                id: 7,
-                message: this._state.messagePage.newMessegasText
-            };
-            this._state.messagePage.messegas.push(newMessage);
-            this._state.messagePage.newMessegasText = '';
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-POST-TEXT') {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state);
-        } else if (action.type === 'UPDATE-NEW-MESSEGA-TEXT') {
-            this._state.messagePage.newMessegasText = action.newText;
-            this._callSubscriber(this._state);
-        }
+
+        this._state.profilePage = profileReducer(this._state.profilePage, action);
+        this._state.messagePage = dialogsReducer(this._state.messagePage, action);
+        this._callSubscriber(this._state);
     }
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST})
-  
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
-export const  addMessageActionCreator = () =>  ({type: ADD_MESSEGA})
-  
-export const updateNewMessageActionCreator = (text) => ({type: UPDATE_NEW_MESSEGA_TEXT, newText: text})
 
 window.store = store;
 
