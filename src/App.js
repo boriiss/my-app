@@ -2,8 +2,8 @@ import './App.css';
 import Header from './сomponents/Header/Header';
 import Navbar from './сomponents/Navbar/Navbar';
 import Profile from './сomponents/Profile/Profile';
-import Dialogs from './сomponents/Dialogs/Dialogs';
 import {Route, Routes} from "react-router-dom";
+import DialogsContainer from './сomponents/Dialogs/DialogsContainer';
 
 const App = (props) => {
   return (
@@ -12,12 +12,11 @@ const App = (props) => {
         <Navbar state={props.state.sidebar}/>
         <div className="content">
         <Routes>
-          <Route path='/dialogs/*' element={<Dialogs 
+          <Route path='/dialogs/*' element={<DialogsContainer
             store={props.store}
           />} />
           <Route exact path='/profile' element={<Profile 
-            profilePage={props.state.profilePage} 
-            dispatch={props.dispatch}
+            store={props.store}
           />} />
         </Routes>
         </div>
