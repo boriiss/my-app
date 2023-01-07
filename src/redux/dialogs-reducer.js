@@ -22,15 +22,20 @@ let initialState = {
 }
 
 const dialogsReducer = (state = initialState, action) => {
+
     switch(action.type) {
         case ADD_MESSEGA:
             let newMessegasText = state.newMessegasText;
-            state.newMessegasText = '';
-            state.messegas.push({ id: 7, message: newMessegasText});
-            return state;
-        case UPDATE_NEW_MESSEGA_TEXT: 
-            state.newMessegasText = action.newText;
-            return state;
+            return { 
+                ...state,
+                newMessegasText: '',
+                messegas: [ ...state.messegas, { id: 7, message: newMessegasText}]
+            };
+        case UPDATE_NEW_MESSEGA_TEXT:
+            return { 
+                ...state,
+                newMessegasText: action.newText
+            };
         default: 
             return state;
     }
