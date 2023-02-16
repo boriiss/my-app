@@ -12,4 +12,5 @@
 .content {
   grid-area: c;
   background-color: #eeeeee;
+  max-width: 1000px;
 }
