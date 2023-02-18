@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { getUserProfile } from './../../redux/profile-reducer';
-import {
+import { 
   useLocation,
   useNavigate,
   useParams,
@@ -16,7 +16,7 @@ class ProfileContainer extends React.Component {
     if(!userId) {
       userId = 2;
     }
-    this.props.getUserProfile(userId);
+    this.props.getUserProfile(userId)
   }
 
 
