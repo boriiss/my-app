@@ -5,6 +5,7 @@ import NavbarContainer from './сomponents/Navbar/NavbarContainer';
 import UsersContainer from './сomponents/Users/UsersContainer';
 import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import HeaderContainer from './сomponents/Header/HeaderContainer';
+import LoginPage from './сomponents/login/login';
 
 const App = (props) => {
   return (
@@ -17,6 +18,7 @@ const App = (props) => {
           <Route path='/profile' element={<ProfileContainer />} />
           <Route path='/profile/:userId' element={<ProfileContainer />} />
           <Route exact path='/users' element={<UsersContainer />} />
+          <Route exact path='/login' element={<LoginPage />} />
         </Routes>
         </div>
       </div>
