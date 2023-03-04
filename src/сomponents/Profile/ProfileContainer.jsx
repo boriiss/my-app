@@ -52,6 +52,5 @@ function withRouter(Component) {
 
 export default compose(
   connect(mapStateToProps, {getUserProfile}),
-  withRouter,
-  withAuthRedirect
+  withRouter
 )(ProfileContainer);
