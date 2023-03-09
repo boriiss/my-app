@@ -1,5 +1,4 @@
 const ADD_MESSEGA = 'ADD-MESSEGA';
-const UPDATE_NEW_MESSEGA_TEXT = 'UPDATE-NEW-MESSEGA-TEXT';
 
 let initialState = {
     dialogs : [
@@ -17,32 +16,23 @@ let initialState = {
         {id: 4, message: 'Lorem ipsum dolor sit amet consectetur'},
         {id: 5, message: 'Lorem, ipsum'},
         {id: 6, message: 'Lorem ipsum dolor sit'}
-    ],
-    newMessegasText : 'Новое сообщение'
+    ]
 }
 
 const dialogsReducer = (state = initialState, action) => {
 
     switch(action.type) {
         case ADD_MESSEGA:
-            let newMessegasText = state.newMessegasText;
+            let newMessageBody = action.newMessageBody;
             return { 
                 ...state,
-                newMessegasText: '',
-                messegas: [ ...state.messegas, { id: 7, message: newMessegasText}]
-            };
-        case UPDATE_NEW_MESSEGA_TEXT:
-            return { 
-                ...state,
-                newMessegasText: action.newText
+                messegas: [ ...state.messegas, { id: 7, message: newMessageBody}]
             };
         default: 
             return state;
     }
 }
 
-export const  addMessageActionCreator = () =>  ({type: ADD_MESSEGA})
-  
-export const updateNewMessageActionCreator = (text) => ({type: UPDATE_NEW_MESSEGA_TEXT, newText: text})
+export const  addMessageActionCreator = (newMessageBody) =>  ({type: ADD_MESSEGA, newMessageBody})
 
 export default dialogsReducer;

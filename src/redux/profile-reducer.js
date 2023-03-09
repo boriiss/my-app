@@ -1,7 +1,6 @@
 import { profileAPI, usersAPI } from './../api/api';
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const TOGGLE_IS_FETCHING = 'TOGGLE_IS_FETCHING';
 const SET_STATUS = 'SET_STATUS';
@@ -12,7 +11,6 @@ let initialState = {
         {id: 2, message: 'How are you?', likesCounts: 10},
         {id: 3, message: 'It\'s my first post', likesCounts: 12}
     ],
-    newPostText : 'Тест',
     profile: null,
     isFetching: false,
     status: ""
@@ -21,19 +19,12 @@ let initialState = {
 const profileReducer = (state = initialState, action) => {
     switch(action.type) {
         case ADD_POST: {
-            let newPostText = state.newPostText;
+            let newPostText = action.newPostText;
 
             return {
                 ...state,
                 posts: [...state.posts, { id: 7, message: newPostText, likesCounts: 3}],
                 newPostText: ''
-            }
-        }
-        case UPDATE_NEW_POST_TEXT: {
-
-            return {
-                ...state,
-                newPostText: action.newText
             }
         }
         case SET_STATUS: {
@@ -59,7 +50,7 @@ const profileReducer = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => ({type: ADD_POST})
+export const addPostActionCreator = (newPostText) => ({type: ADD_POST, newPostText})
 export const setUserProfile = (profile) => ({type: SET_USER_PROFILE, profile})
 export const setStatus = (status) => ({type: SET_STATUS, status})
 export const getUserProfile = (userId) => (dispactch) => {
@@ -80,7 +71,6 @@ export const updateStatus = (status) => (dispactch) => {
             }
       });
 }
-export const updateNewPostTextActionCreator = (text) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
 export const toggleIsFetching = (isFetching) => ({type: TOGGLE_IS_FETCHING, isFetching})
 
 export default profileReducer;
