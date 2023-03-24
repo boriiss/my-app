@@ -10,6 +10,7 @@ import LoginPage from './сomponents/login/login';
 const App = (props) => {
   return (
       <div className="wrapper">
+        
         <HeaderContainer />
         <NavbarContainer />
         <div className="content">
