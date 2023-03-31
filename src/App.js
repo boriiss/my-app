@@ -5,7 +5,7 @@ import NavbarContainer from './сomponents/Navbar/NavbarContainer';
 import UsersContainer from './сomponents/Users/UsersContainer';
 import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import HeaderContainer from './сomponents/Header/HeaderContainer';
-import LoginPage from './сomponents/login/login';
+import LoginPage from './сomponents/Login/Login';
 
 const App = (props) => {
   return (
