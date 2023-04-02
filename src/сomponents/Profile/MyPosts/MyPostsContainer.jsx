@@ -16,8 +16,6 @@ let mapStateToProps = (state) => {
   return {
     posts: state.profilePage.posts,
     newPostText: state.profilePage.newPostText,
-    authorizedUserId: state.auth.userId,
-    isAuth: state.auth.isAuth
   }
 }
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts);
