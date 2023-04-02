@@ -15,8 +15,8 @@ class ProfileContainer extends React.Component {
     if(!userId) {
       userId = this.props.authorizedUserId;
       if(!userId){
-        
-        return <Navigate to={"/login"} />;
+        userId = 27935;
+        <Navigate to={"/login"} />;
       }
     }
     this.props.getUserProfile(userId);
