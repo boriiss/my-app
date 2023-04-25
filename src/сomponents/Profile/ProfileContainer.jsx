@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import Profile from './Profile';
 import { getUserProfile, getStatus, updateStatus } from './../../redux/profile-reducer';
@@ -7,8 +7,8 @@ import { compose } from 'redux';
 import withRouter from '../../utils/withRouter';
 import { Navigate } from 'react-router-dom';
 
-class ProfileContainer extends React.Component {
-
+class ProfileContainer extends PureComponent {
+  
   componentDidMount() {
     let userId = this.props.router.params.userId;
     
@@ -30,6 +30,10 @@ class ProfileContainer extends React.Component {
       })
     }
   }
+
+  // shouldComponentUpdate(nextProps, nextState) {
+  //   return nextProps != this.props && nextState != this.state;
+  // }
 
   render() {
 
