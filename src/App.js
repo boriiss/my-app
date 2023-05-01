@@ -24,7 +24,6 @@ class App extends React.Component {
     }
     return (
       <div className="wrapper">
-        
         <HeaderContainer />
         <NavbarContainer />
         <div className="content">

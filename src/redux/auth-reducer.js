@@ -23,37 +23,32 @@ const authReducer = (state = initialState, action) => {
     }
 }
 export const setAuthUserData = (id, email, login, isAuth) => ({type: SET_USER_DATA, payload: {id, email, login, isAuth}});
-export const getAuthUserData = () => (dispactch) => {
-    authAPI.me()
-      .then(response => {
-        if(response.data.resultCode === 0) {
-          let {id, email, login} = response.data.data;
-          dispactch(setAuthUserData(id, email, login, true));
-        } else {
-          
-        }
-      })
+export const getAuthUserData = () => async (dispactch) => {
+  let response = await authAPI.me();
+    
+  if(response.data.resultCode === 0) {
+    let {id, email, login} = response.data.data;
+    dispactch(setAuthUserData(id, email, login, true));
+  }
 }
 
-export const login = (email, password, rememerMe) => (dispactch) => {
-    authAPI.login(email, password, rememerMe)
-      .then(response => {
-        if(response.data.resultCode === 0) {
-          dispactch(getAuthUserData());
-        }else{
-          let message = response.data.messages.length > 0 ? response.data.messages : "Some error";
-          dispactch(stopSubmit("login", {_error: message}));
-        }
-      })
+export const login = (email, password, rememerMe) => async (dispactch) => {
+  let response = await authAPI.login(email, password, rememerMe);
+
+  if(response.data.resultCode === 0) {
+    dispactch(getAuthUserData());
+  }else{
+    let message = response.data.messages.length > 0 ? response.data.messages : "Some error";
+    dispactch(stopSubmit("login", {_error: message}));
+  }
 }
 
-export const logout = () => (dispactch) => {
-    authAPI.logout()
-      .then(response => {
-        if(response.data.resultCode === 0) {
-            dispactch(setAuthUserData(null, null, null, false)); 
-        }
-      })
+export const logout = () => async (dispactch) => {
+  let response = await authAPI.logout();
+
+  if(response.data.resultCode === 0) {
+      dispactch(setAuthUserData(null, null, null, false)); 
+  }
 }
 
 export default authReducer;

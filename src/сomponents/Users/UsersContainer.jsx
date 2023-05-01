@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import { follow, unfollow, setUsers, setCurrentPage, setTotalUsersCount, toggleIsFetching, toggleFollowingProgress, requestUsers } from './../../redux/users-reducer';
 import Users from './Users';
 import Preloader from './../common/Preloader/Preloader';
-import { usersAPI } from './../../api/api';
-import { withAuthRedirect } from './../../hoc/withAuthRedirect';
 import { compose } from 'redux';
 
 class UsersContainer extends React.Component {
 
   componentDidMount() {
-    this.props.requestUsers(this.props.currentPage, this.props.pageSize);
+    const {currentPage, pageSize} = this.props;
+    this.props.requestUsers(currentPage, pageSize);
   }
 
   onPageChanged = (pageNumber) => {
-    this.props.requestUsers(pageNumber, this.props.pageSize);
+    const {pageSize} = this.props
+    this.props.requestUsers(pageNumber, pageSize);
   }
 
   render() {
