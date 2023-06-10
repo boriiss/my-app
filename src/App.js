@@ -29,7 +29,7 @@ class App extends React.Component {
         <NavbarContainer />
         <div className="content">
         <Suspense fallback={<Preloader />}>
-          <Routes>
+          <Routes basename={process.env.PUBLIC_URL}>
             <Route path='/dialogs/*' element={<DialogsContainer />} />
             <Route path='/profile' element={<ProfileContainer />} />
             <Route path='/profile/:userId' element={<ProfileContainer />} />
