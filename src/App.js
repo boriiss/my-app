@@ -1,10 +1,9 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import './App.css';
 import {Route, Routes} from "react-router-dom";
-import DialogsContainer from './сomponents/Dialogs/DialogsContainer';
 import NavbarContainer from './сomponents/Navbar/NavbarContainer';
+import DialogsContainer from './сomponents/Dialogs/DialogsContainer';
 import UsersContainer from './сomponents/Users/UsersContainer';
-import ProfileContainer from './сomponents/Profile/ProfileContainer';
 import HeaderContainer from './сomponents/Header/HeaderContainer';
 import LoginPage from './сomponents/Login/Login';
 import { connect } from 'react-redux';
@@ -12,6 +11,8 @@ import { initializeApp } from './redux/app-reducer';
 import { compose } from 'redux';
 import withRouter from './utils/withRouter';
 import Preloader from './сomponents/common/Preloader/Preloader';
+
+const ProfileContainer = React.lazy(() => import('./сomponents/Profile/ProfileContainer'));
 
 class App extends React.Component {
   componentDidMount() {
@@ -27,13 +28,15 @@ class App extends React.Component {
         <HeaderContainer />
         <NavbarContainer />
         <div className="content">
-        <Routes>
-          <Route path='/dialogs/*' element={<DialogsContainer />} />
-          <Route path='/profile' element={<ProfileContainer />} />
-          <Route path='/profile/:userId' element={<ProfileContainer />} />
-          <Route exact path='/users' element={<UsersContainer />} />
-          <Route exact path='/login' element={<LoginPage />} />
-        </Routes>
+        <Suspense fallback={<Preloader />}>
+          <Routes>
+            <Route path='/dialogs/*' element={<DialogsContainer />} />
+            <Route path='/profile' element={<ProfileContainer />} />
+            <Route path='/profile/:userId' element={<ProfileContainer />} />
+            <Route exact path='/users' element={<UsersContainer />} />
+            <Route exact path='/login' element={<LoginPage />} />
+          </Routes>
+        </Suspense>
         </div>
       </div>
     );
