@@ -5,3 +5,7 @@
 .profileImg {
   width: 500px;
 }
+
+.mainPhoto {
+  max-width: 200px;
+}

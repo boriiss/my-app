@@ -8,4 +8,5 @@
 .paginator span {
   border: 1px solid rgb(0 0 0 / 26%);
   padding: 0 5px;
+  cursor: pointer;
 }
