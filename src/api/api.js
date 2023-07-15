@@ -46,6 +46,9 @@ export const profileAPI = {
         'Content-Type': 'multipart/form-data'
       }
     });
+  },
+  saveProlife(profile){
+    return instance.put(`profile`, profile)
   }
 }
 
