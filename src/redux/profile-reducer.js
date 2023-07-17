@@ -92,7 +92,6 @@ export const savePhoto = (file) => async (dispactch) => {
 
 export const saveProfile = (profile) => async (dispactch, getState) => {
     const userId = getState().auth.id;
-    debugger
     const response = await profileAPI.saveProlife(profile);
     if(response.data.resultCode === 0){
         dispactch(getUserProfile(userId));

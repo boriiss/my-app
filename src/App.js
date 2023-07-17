@@ -15,8 +15,17 @@ import Preloader from './сomponents/common/Preloader/Preloader';
 const ProfileContainer = React.lazy(() => import('./сomponents/Profile/ProfileContainer'));
 
 class App extends React.Component {
+  catchAllUnhandledErrors = (reason, promise) => {
+    alert("Some error occured");
+  }
+
   componentDidMount() {
     this.props.initializeApp();
+    window.addEventListener("unhandledrejection", this.catchAllUnhandledErrors)
+  }
+
+  componentWillMount() {
+    window.removeEventListener("unhandledrejection", this.catchAllUnhandledErrors)
   }
 
   render() {
